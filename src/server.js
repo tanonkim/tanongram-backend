@@ -11,6 +11,7 @@ import { makeExecutableSchema } from "@graphql-tools/schema";
 
 import { typeDefs, resolvers } from "./schema";
 import { getUser } from "./users/users.utils";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
@@ -18,6 +19,7 @@ async function startServer() {
   const apollo = new ApolloServer({
     schema,
     playground: true,
+    plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     context: async (ctx) => {
       if (ctx.req) {
         return {
