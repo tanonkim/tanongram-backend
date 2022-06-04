@@ -17,6 +17,7 @@ const schema = makeExecutableSchema({ typeDefs, resolvers });
 async function startServer() {
   const apollo = new ApolloServer({
     schema,
+    playground: true,
     context: async (ctx) => {
       if (ctx.req) {
         return {
