@@ -19,6 +19,7 @@ async function startServer() {
   const apollo = new ApolloServer({
     schema,
     playground: true,
+    introspection: true,
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     context: async (ctx) => {
       if (ctx.req) {
