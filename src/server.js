@@ -18,8 +18,8 @@ const schema = makeExecutableSchema({ typeDefs, resolvers });
 async function startServer() {
   const apollo = new ApolloServer({
     schema,
-    playground: true,
-    introspection: true,
+    playground: false,
+    introspection: false,
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     context: async (ctx) => {
       if (ctx.req) {
