@@ -6,7 +6,7 @@ export default {
       return client.photo.findMany({
         where: {
           caption: {
-            contains: keyword,
+            startsWith: keyword,
           },
         },
       });

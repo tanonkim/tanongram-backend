@@ -5,20 +5,33 @@ export default {
   Mutation: {
     deleteComment: protectedResolver(async (_, { id }, { loggedInUser }) => {
       const comment = await client.comment.findUnique({
-        where: { id },
-        select: { userId: true },
+        where: {
+          id,
+        },
+        select: {
+          userId: true,
+        },
       });
       if (!comment) {
-        return { ok: false, error: "Comment not found" };
+        return {
+          ok: false,
+          error: "Comment not found",
+        };
       } else if (comment.userId !== loggedInUser.id) {
         return {
           ok: false,
           error: "Not authorized",
         };
       } else {
-        await client.comment.delete({ where: { id } });
+        await client.comment.delete({
+          where: {
+            id,
+          },
+        });
       }
-      return { ok: true };
+      return {
+        ok: true,
+      };
     }),
   },
 };
